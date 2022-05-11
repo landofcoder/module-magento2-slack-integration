@@ -329,14 +329,14 @@ class Slack
                     }
                     break;
                 case "new_chat":
-                    if ( $this->configData->getNotificationConfig('general_settings/enable') ) {
+                    if ( $this->configData->getNotificationConfig('new_chat_notification/enable') ) {
                         $channel = $this->configData->getNotificationConfig('new_chat_notification/channel');
                         $channel = $channel ? $channel : $this->generalChannel;
                         $color = $this->configData->getNotificationConfig('new_chat_notification/color');
 
-                        $customerName = $data['customerName'];
-                        $email = $data['email'];
-                        $comment = $data['comment'];
+                        $customerName = $data['customer_name'];
+                        $email = $data['customer_email'];
+                        $comment = $data['body_msg'];
                         $store = $data['store'];
 
                         $messageData = $this->objectManager->create('Lof\SlackIntegration\Model\Notification\BaseNotification');
