@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Event/etc/events.xsd">
+    <event name="checkout_onepage_controller_success_action">
+        <observer name="lof_slack_integration_new_order" instance="Lof\SlackIntegration\Observer\NewOrder" />
+    </event>
+    <event name="customer_register_success">
+        <observer name="lof_slack_integration_new_customer" instance="Lof\SlackIntegration\Observer\NewCustomer" />
+    </event>
+    <event name="controller_action_postdispatch_review_product_post">
+        <observer name="lof_slack_integration_new_review" instance="Lof\SlackIntegration\Observer\NewReview" />
+    </event>
+    <event name="controller_action_postdispatch_contact_index_post">
+        <observer name="lof_slack_integration_new_contact" instance="Lof\SlackIntegration\Observer\NewContact" />
+    </event>
+</config>

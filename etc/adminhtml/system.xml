@@ -1,0 +1,94 @@
+<?xml version="1.0"?>
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <tab id="landofcoder" translate="label" sortOrder="400">
+            <label><![CDATA[<a href="http://landofcoder.com" target="_BLANK" title=""Magento Marketplace, Opencart Marketplace, Magento 2 Extension, Free Magento Extension, Opencart Advanced Reports">landofcoder.com</a>]]></label>
+        </tab>
+        <section id="lof_slack_integration" translate="label" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+            <class>separator-top</class>
+            <label>Slack Integration</label>
+            <tab>landofcoder</tab>
+            <resource>Lof_SlackIntegration::configuration</resource>
+            <group id="general" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="0" showInStore="0">
+                <label>General Configuration</label>
+                <field id="enable" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Module Enable</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="url" translate="label" type="text" sortOrder="20" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Url</label>
+                </field>
+                <field id="username" translate="label" type="text" sortOrder="30" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Username</label>
+                </field>
+                <field id="channel" translate="label" type="text" sortOrder="40" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>General Channel</label>
+                </field>
+                <field id="button" translate="label comment" type="button" sortOrder="50" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label></label>
+                    <frontend_model>Lof\SlackIntegration\Block\Adminhtml\System\Config\TestButton</frontend_model>
+                </field>
+                <field id="footer" translate="label" type="text" sortOrder="60" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Footer Text</label>
+                </field>
+            </group>
+            <group id="new_order_notification" translate="label" type="text" sortOrder="20" showInDefault="1" showInWebsite="0" showInStore="0">
+                <label>New Order Notification</label>
+                <field id="enable" translate="label comment" type="checkbox" sortOrder="10" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Enable</label>
+                    <frontend_model>Lof\SlackIntegration\Block\Adminhtml\System\Config\Checkbox</frontend_model>
+                </field>
+                <field id="channel" translate="label" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Channel</label>
+                </field>
+                <field id="color" translate="label" type="text" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Color</label>
+                    <frontend_model>Lof\SlackIntegration\Block\Adminhtml\System\Config\Form\Field\Color</frontend_model>
+                </field>
+            </group>
+            <group id="new_review_notification" translate="label" type="text" sortOrder="30" showInDefault="1" showInWebsite="0" showInStore="0">
+                <label>New Review Notification</label>
+                <field id="enable" translate="label comment" type="checkbox" sortOrder="10" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Enable</label>
+                    <frontend_model>Lof\SlackIntegration\Block\Adminhtml\System\Config\Checkbox</frontend_model>
+                </field>
+                <field id="channel" translate="label" type="text" sortOrder="20" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Channel</label>
+                </field>
+                <field id="color" translate="label" type="text" sortOrder="30" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Color</label>
+                    <frontend_model>Lof\SlackIntegration\Block\Adminhtml\System\Config\Form\Field\Color</frontend_model>
+                </field>
+            </group>
+            <group id="new_contact_notification" translate="label" type="text" sortOrder="40" showInDefault="1" showInWebsite="0" showInStore="0">
+                <label>New Contact Notification</label>
+                <field id="enable" translate="label comment" type="checkbox" sortOrder="10" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Enable</label>
+                    <frontend_model>Lof\SlackIntegration\Block\Adminhtml\System\Config\Checkbox</frontend_model>
+                </field>
+                <field id="channel" translate="label" type="text" sortOrder="20" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Channel</label>
+                </field>
+                <field id="color" translate="label" type="text" sortOrder="30" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Color</label>
+                    <frontend_model>Lof\SlackIntegration\Block\Adminhtml\System\Config\Form\Field\Color</frontend_model>
+                </field>
+            </group>
+            <group id="new_customer_notification" translate="label" type="text" sortOrder="50" showInDefault="1" showInWebsite="0" showInStore="0">
+                <label>New Customer Notification</label>
+                <field id="enable" translate="label comment" type="checkbox" sortOrder="10" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Enable</label>
+                    <frontend_model>Lof\SlackIntegration\Block\Adminhtml\System\Config\Checkbox</frontend_model>
+                </field>
+                <field id="channel" translate="label" type="text" sortOrder="20" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Channel</label>
+                </field>
+                <field id="color" translate="label" type="text" sortOrder="30" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Color</label>
+                    <frontend_model>Lof\SlackIntegration\Block\Adminhtml\System\Config\Form\Field\Color</frontend_model>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

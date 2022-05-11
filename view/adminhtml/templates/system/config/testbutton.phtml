@@ -1,0 +1,32 @@
+<?php
+$jsonHelper = $this->helper('Magento\Framework\Json\Helper\Data');
+?>
+
+<script>
+    require([
+        'jquery',
+        'Magento_Ui/js/modal/alert'
+    ], function ($, alert) {
+        window.SlackIntegrationTest = function(){
+            var channel = $('#lof_slack_integration_general_channel').val();
+            var username = $('#lof_slack_integration_general_username').val();
+
+            var text = {text:"It's Work!", channel:channel, username:username};
+            $.ajax({
+                url: $('#lof_slack_integration_general_url').val(),
+                type: 'post',
+                processData: false,
+                dataType: 'html',
+                data: JSON.stringify(text)
+            }).done(function (response) {
+                alert({
+                    title:'Result',
+                    content: "It's Work!"
+                });
+            });
+        }
+    });
+</script>
+
+
+<?php echo $block->getButtonHtml() ?>
