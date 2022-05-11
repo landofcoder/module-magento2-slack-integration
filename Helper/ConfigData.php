@@ -34,7 +34,15 @@ class ConfigData extends AbstractHelper
     const PATH_MODULE = 'lof_slack_integration/';
     const PATH_GENERAL = 'lof_slack_integration/general/';
     const PATH_CHANNEL = 'lof_slack_integration/channel/';
+    const PATH_CHAT_MODULE = 'lofchatsystem/';
 
+    /**
+     * construct function
+     *
+     * @param Context $context
+     * @param ObjectManagerInterface $objectManager
+     * @param StoreManagerInterface $storeManager
+     */
     public function __construct(
         Context $context,
         ObjectManagerInterface $objectManager,
@@ -79,6 +87,18 @@ class ConfigData extends AbstractHelper
     public function getNotificationConfig($code, $storeId = null)
     {
         return $this->getConfigValue(self::PATH_MODULE . $code, $storeId);
+    }
+
+    /**
+     * Get chat system config value (Should setup module Lof_ChatSystem)
+     *
+     * @param string $field
+     * @param mixed|null $storeId
+     * @return mixed
+     */
+    public function getChatConfig($code, $storeId = null)
+    {
+        return $this->getConfigValue(self::PATH_CHAT_MODULE . $code, $storeId);
     }
 
     /**
