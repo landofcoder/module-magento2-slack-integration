@@ -4,9 +4,9 @@
  *
  * NOTICE OF LICENSE
  *
- * This source file is subject to the venustheme.com license that is
+ * This source file is subject to the Landofcoder.com license that is
  * available through the world-wide-web at this URL:
- * http://venustheme.com/license
+ * https://landofcoder.com/terms
  *
  * DISCLAIMER
  *
@@ -15,10 +15,9 @@
  *
  * @category   Landofcoder
  * @package    Lof_SlackIntegration
- * @copyright  Copyright (c) 2018 Landofcoder (http://www.venustheme.com/)
- * @license    http://www.venustheme.com/LICENSE-1.0.html
+ * @copyright  Copyright (c) 2022 Landofcoder (https://www.landofcoder.com/)
+ * @license    https://landofcoder.com/terms
  */
-
 namespace Lof\SlackIntegration\Helper;
 
 use Magento\Framework\App\Helper\AbstractHelper;
@@ -36,34 +35,60 @@ class ConfigData extends AbstractHelper
     const PATH_GENERAL = 'lof_slack_integration/general/';
     const PATH_CHANNEL = 'lof_slack_integration/channel/';
 
-    public function __construct(Context $context,
-                                ObjectManagerInterface $objectManager,
-                                StoreManagerInterface $storeManager)
-    {
+    public function __construct(
+        Context $context,
+        ObjectManagerInterface $objectManager,
+        StoreManagerInterface $storeManager
+    ) {
         $this->objectManager = $objectManager;
         $this->storeManager = $storeManager;
         parent::__construct($context);
     }
 
-    public function getConfigValue($filed, $storeId = null)
+    /**
+     * Get config value
+     *
+     * @param string $field
+     * @param mixed|null $storeId
+     * @return mixed
+     */
+    public function getConfigValue($field, $storeId = null)
     {
-        return $this->scopeConfig->getValue($filed, ScopeInterface::SCOPE_STORE, $storeId);
+        return $this->scopeConfig->getValue($field, ScopeInterface::SCOPE_STORE, $storeId);
     }
 
+    /**
+     * Get general config value
+     *
+     * @param string $field
+     * @param mixed|null $storeId
+     * @return mixed
+     */
     public function getGeneralConfig($code, $storeId = null)
     {
         return $this->getConfigValue(self::PATH_GENERAL . $code, $storeId);
     }
 
+    /**
+     * Get notification config value
+     *
+     * @param string $field
+     * @param mixed|null $storeId
+     * @return mixed
+     */
     public function getNotificationConfig($code, $storeId = null)
     {
         return $this->getConfigValue(self::PATH_MODULE . $code, $storeId);
     }
 
+    /**
+     * check module is enabled
+     *
+     * @return bool
+     */
     public function isModuleEnabled()
     {
-        return $this->getGeneralConfig('enable');
+        return (bool)$this->getGeneralConfig('enable');
     }
 }
-
 ?>

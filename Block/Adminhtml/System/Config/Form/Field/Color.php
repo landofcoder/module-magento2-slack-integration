@@ -6,7 +6,7 @@
  *
  * This source file is subject to the Landofcoder.com license that is
  * available through the world-wide-web at this URL:
- * http://landofcoder.com/license
+ * https://landofcoder.com/terms
  *
  * DISCLAIMER
  *
@@ -15,9 +15,8 @@
  *
  * @category   Landofcoder
  * @package    Lof_SlackIntegration
- *
- * @copyright  Copyright (c) 2016 Landofcoder (http://www.landofcoder.com/)
- * @license    http://www.landofcoder.com/LICENSE-1.0.html
+ * @copyright  Copyright (c) 2022 Landofcoder (https://www.landofcoder.com/)
+ * @license    https://landofcoder.com/terms
  */
 
 namespace Lof\SlackIntegration\Block\Adminhtml\System\Config\Form\Field;
@@ -26,6 +25,9 @@ use Magento\Config\Block\System\Config\Form\Field;
 
 class Color extends Field
 {
+    /**
+     * @inheritdoc
+     */
     protected function _renderValue(\Magento\Framework\Data\Form\Element\AbstractElement $element)
     {
         $element->addClass('minicolors');

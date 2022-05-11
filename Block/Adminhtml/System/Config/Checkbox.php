@@ -4,9 +4,9 @@
  *
  * NOTICE OF LICENSE
  *
- * This source file is subject to the venustheme.com license that is
+ * This source file is subject to the Landofcoder.com license that is
  * available through the world-wide-web at this URL:
- * http://venustheme.com/license
+ * https://landofcoder.com/terms
  *
  * DISCLAIMER
  *
@@ -15,8 +15,8 @@
  *
  * @category   Landofcoder
  * @package    Lof_SlackIntegration
- * @copyright  Copyright (c) 2018 Landofcoder (http://www.venustheme.com/)
- * @license    http://www.venustheme.com/LICENSE-1.0.html
+ * @copyright  Copyright (c) 2022 Landofcoder (https://www.landofcoder.com/)
+ * @license    https://landofcoder.com/terms
  */
 
 namespace Lof\SlackIntegration\Block\Adminhtml\System\Config;
@@ -35,6 +35,9 @@ class Checkbox extends Field
 
     protected $_template = 'Lof_SlackIntegration::system/config/checkbox.phtml';
 
+    /**
+     * @var mixed|null
+     */
     protected $_values = null;
 
     /**

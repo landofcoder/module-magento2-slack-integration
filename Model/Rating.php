@@ -4,9 +4,9 @@
  *
  * NOTICE OF LICENSE
  *
- * This source file is subject to the venustheme.com license that is
+ * This source file is subject to the Landofcoder.com license that is
  * available through the world-wide-web at this URL:
- * http://venustheme.com/license
+ * https://landofcoder.com/terms
  *
  * DISCLAIMER
  *
@@ -15,13 +15,14 @@
  *
  * @category   Landofcoder
  * @package    Lof_SlackIntegration
- * @copyright  Copyright (c) 2018 Landofcoder (http://www.venustheme.com/)
- * @license    http://www.venustheme.com/LICENSE-1.0.html
+ * @copyright  Copyright (c) 2022 Landofcoder (https://www.landofcoder.com/)
+ * @license    https://landofcoder.com/terms
  */
 
 namespace Lof\SlackIntegration\Model;
 
-class Rating{
+class Rating
+{
     protected $connection;
 
     public function __construct()
@@ -30,11 +31,17 @@ class Rating{
         $this->connection = $objectManager->get('Magento\Framework\App\ResourceConnection')->getConnection('\Magento\Framework\App\ResourceConnection::DEFAULT_CONNECTION');
     }
 
-    public function getRatingCodeById($id){
+    /**
+     * Get rating code by id
+     *
+     * @param int|string $id
+     * @return string
+     */
+    public function getRatingCodeById($id)
+    {
         $result =  $this->connection->fetchAll("SELECT rating_code FROM rating WHERE rating_id =  $id");
-        return $result[0]['rating_code'];
+        return $result && isset($result[0]) && isset($result[0]['rating_code']) ? $result[0]['rating_code'] : "";
     }
 
 }
-
 ?>

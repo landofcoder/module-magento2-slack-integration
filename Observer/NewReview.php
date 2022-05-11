@@ -4,9 +4,9 @@
  *
  * NOTICE OF LICENSE
  *
- * This source file is subject to the venustheme.com license that is
+ * This source file is subject to the Landofcoder.com license that is
  * available through the world-wide-web at this URL:
- * http://venustheme.com/license
+ * https://landofcoder.com/terms
  *
  * DISCLAIMER
  *
@@ -15,37 +15,41 @@
  *
  * @category   Landofcoder
  * @package    Lof_SlackIntegration
- * @copyright  Copyright (c) 2018 Landofcoder (http://www.venustheme.com/)
- * @license    http://www.venustheme.com/LICENSE-1.0.html
+ * @copyright  Copyright (c) 2022 Landofcoder (https://www.landofcoder.com/)
+ * @license    https://landofcoder.com/terms
  */
 
 namespace Lof\SlackIntegration\Observer;
 use Magento\Framework\Event\ObserverInterface;
 use Lof\SlackIntegration\Model\Rating;
 
-class NewReview implements ObserverInterface{
+class NewReview implements ObserverInterface
+{
 
     protected $slack;
     protected $productFactory;
     protected $storeManager;
     protected $ratingManager;
 
-    public function __construct(Slack $slack,
-                                \Magento\Catalog\Model\ProductFactory $productFactory,
-                                \Magento\Store\Model\StoreManagerInterface $storeManager,
-                                Rating $ratingManager)
-    {
+    public function __construct(
+        Slack $slack,
+        \Magento\Catalog\Model\ProductFactory $productFactory,
+        \Magento\Store\Model\StoreManagerInterface $storeManager,
+        Rating $ratingManager
+    ) {
         $this->slack = $slack;
         $this->productFactory = $productFactory;
         $this->storeManager = $storeManager;
         $this->ratingManager = $ratingManager;
     }
 
+    /**
+     * @inheritdoc
+     */
     public function execute(\Magento\Framework\Event\Observer $observer)
     {
         $data = $observer->getEvent()->getRequest()->getParams();
         $reviewData = [];
-
         $id = $data['id'];
         $customerName = $data['nickname'];
         $productName = $this->productFactory->create()->load($id)->getName();
@@ -56,12 +60,12 @@ class NewReview implements ObserverInterface{
 
         $ratingCollection = isset($data['ratings']) ? $data['ratings'] : null;
         $rating = "";
-        if($ratingCollection) {
-            foreach($ratingCollection as $key => $value){
+        if ($ratingCollection) {
+            foreach ($ratingCollection as $key => $value) {
                 $name = $this->ratingManager->getRatingCodeById($key);
                 $value -= ($key-1)*5;
                 $starString = "";
-                while($value-- != 0){
+                while ($value-- != 0) {
                     $starString .= ":star:";
                 }
                 $rating .= $name . ": " . $starString . "\n";
@@ -75,8 +79,6 @@ class NewReview implements ObserverInterface{
         $reviewData['rating'] = $rating;
         $reviewData['detail'] = $detail;
         $reviewData['store'] = $store;
-
         $this->slack->sendMessage('new_review', $reviewData);
-
     }
 }

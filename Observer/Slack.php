@@ -4,9 +4,9 @@
  *
  * NOTICE OF LICENSE
  *
- * This source file is subject to the venustheme.com license that is
+ * This source file is subject to the Landofcoder.com license that is
  * available through the world-wide-web at this URL:
- * http://venustheme.com/license
+ * https://landofcoder.com/terms
  *
  * DISCLAIMER
  *
@@ -15,13 +15,14 @@
  *
  * @category   Landofcoder
  * @package    Lof_SlackIntegration
- * @copyright  Copyright (c) 2018 Landofcoder (http://www.venustheme.com/)
- * @license    http://www.venustheme.com/LICENSE-1.0.html
+ * @copyright  Copyright (c) 2022 Landofcoder (https://www.landofcoder.com/)
+ * @license    https://landofcoder.com/terms
  */
 
 namespace Lof\SlackIntegration\Observer;
 
-class Slack {
+class Slack
+{
     protected $hookUrl;
     protected $generalChannel;
     protected $username;
@@ -36,8 +37,7 @@ class Slack {
         \Magento\Framework\Json\EncoderInterface $jsonEncoder,
         \Magento\Framework\HTTP\Client\Curl $curlClient,
         \Lof\SlackIntegration\Helper\ConfigData $configData
-    )
-    {
+    ) {
         $this->objectManager = $objectManager;
         $this->jsonEncoder = $jsonEncoder;
         $this->curlClient = $curlClient;
@@ -48,7 +48,8 @@ class Slack {
         $this->footer = $this->configData->getGeneralConfig('footer');
     }
 
-    public function sendMessage($type, $data){
+    public function sendMessage($type, $data)
+    {
         if($this->configData->isModuleEnabled()){
             switch($type){
                 case "new_order":
@@ -286,15 +287,20 @@ class Slack {
         }
     }
 
-    protected function send($messageData, $channel){
+    /**
+     * send message data
+     * @param mixed $messageData
+     * @param string $channel
+     * @return void
+     */
+    protected function send($messageData, $channel)
+    {
         try {
-            $message = $field = $this->objectManager->create('Lof\SlackIntegration\Model\Message');
+            $message = $this->objectManager->create('Lof\SlackIntegration\Model\Message');
             $message->channel = $channel;
             $message->username = $this->username;
             $message->attachments[] = $messageData;
-
             $payload = $this->jsonEncoder->encode($message);
-
             $this->curlClient->post($this->hookUrl, ["payload" => $payload]);
         } catch (Exception $e){
             echo "Err";

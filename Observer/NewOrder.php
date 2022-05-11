@@ -4,9 +4,9 @@
  *
  * NOTICE OF LICENSE
  *
- * This source file is subject to the venustheme.com license that is
+ * This source file is subject to the Landofcoder.com license that is
  * available through the world-wide-web at this URL:
- * http://venustheme.com/license
+ * https://landofcoder.com/terms
  *
  * DISCLAIMER
  *
@@ -15,8 +15,8 @@
  *
  * @category   Landofcoder
  * @package    Lof_SlackIntegration
- * @copyright  Copyright (c) 2018 Landofcoder (http://www.venustheme.com/)
- * @license    http://www.venustheme.com/LICENSE-1.0.html
+ * @copyright  Copyright (c) 2022 Landofcoder (https://www.landofcoder.com/)
+ * @license    https://landofcoder.com/terms
  */
 
 namespace Lof\SlackIntegration\Observer;
@@ -30,15 +30,19 @@ class NewOrder implements ObserverInterface
     protected $slack;
     protected $storeManager;
 
-    public function __construct(\Magento\Sales\Api\Data\OrderInterface $orderInfo,
-                                Slack $slack,
-                                \Magento\Store\Model\StoreManagerInterface $storeManager)
-    {
+    public function __construct(
+        \Magento\Sales\Api\Data\OrderInterface $orderInfo,
+        Slack $slack,
+        \Magento\Store\Model\StoreManagerInterface $storeManager
+    ) {
         $this->orderInfo = $orderInfo;
         $this->slack = $slack;
         $this->storeManager = $storeManager;
     }
 
+    /**
+     * @inheritdoc
+     */
     public function execute(\Magento\Framework\Event\Observer $observer)
     {
         $orderData = [];
@@ -49,7 +53,7 @@ class NewOrder implements ObserverInterface
         } else {
             $order = null;
         }
-        
+
         if(!$order || ($order && !$order->getId())) {
             $order = $this->orderInfo->load((int)$id);
         }
@@ -58,7 +62,7 @@ class NewOrder implements ObserverInterface
                 $order->getCustomerMiddlename() . " " .
                 $order->getCustomerLastname();
         } else {
-            $customerName = __("Guest");   
+            $customerName = __("Guest");
         }
         $email = $order->getCustomerEmail();
         $shippingData = $order->getShippingAddress();
@@ -66,7 +70,7 @@ class NewOrder implements ObserverInterface
         if($shippingData) {
             $telephone = $shippingData->getTelephone();
         }
-        
+
 
         $subTotal = "Subtotal : " . $order->getSubtotal();
         $grandTotal = "Grand Total : " . $order->getGrandTotal();

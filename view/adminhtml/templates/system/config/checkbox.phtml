@@ -1,10 +1,10 @@
-<input type="hidden" name="<?php echo $this->getNamePrefix() ?>" value="" /><!-- this is send if nothing is checked -->
+<input type="hidden" name="<?= $block->escapeHtmlAttr($this->getNamePrefix()) ?>" value="" /><!-- this is send if nothing is checked -->
 <label class="switch">
     <?php foreach ($this->getValues() as $name => $label): ?>
-        <input type="checkbox" value="<?php echo $name?>"
-               name="<?php echo $this->getNamePrefix() ?>[]"
-               id="<?php echo $this->getHtmlId()?>"
-            <?php echo ($this->isChecked() ? ' checked="checked"' : '') ?>
+        <input type="checkbox" value="<?= $block->escapeHtmlAttr($name); ?>"
+               name="<?= $block->escapeHtmlAttr($this->getNamePrefix()) ?>[]"
+               id="<?= $block->escapeHtmlAttr($this->getHtmlId()) ?>"
+            <?= ($this->isChecked() ? ' checked="checked"' : '') ?>
         />
         <div class="slider round"></div>
     <?php endforeach;?>
