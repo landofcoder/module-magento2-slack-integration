@@ -334,9 +334,9 @@ class Slack
                         $channel = $channel ? $channel : $this->generalChannel;
                         $color = $this->configData->getNotificationConfig('new_chat_notification/color');
 
-                        $customerName = $data['customer_name'];
-                        $email = $data['customer_email'];
-                        $comment = $data['body_msg'];
+                        $customerName = $data['name'];
+                        $email = $data['email'];
+                        $comment = $data['comment'];
                         $store = $data['store'];
 
                         $messageData = $this->objectManager->create('Lof\SlackIntegration\Model\Notification\BaseNotification');
